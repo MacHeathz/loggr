@@ -1,14 +1,21 @@
-source("../r/dataloader.R")
+source("../r/read_regexp.R")
 
 # Run auto_test('r', 'tests') for automated testing during development
 
-context("Logrify Dataloader")
+context("Logrify read_regexp")
 
 string <- "# Comment 1\n2013-09-23, 23:23, sadf, sdf, 234\n# Comment 2"
 
-test_that("read_regexp reads lines that match the regular expression.", {
+test_that("read_regexp reads lines that match the regular expression from a string.", {
   expect_that(read_regexp(string, "^[^#]"), equals("2013-09-23, 23:23, sadf, sdf, 234"))
   expect_that(read_regexp(string, "^[#]"), equals(c("# Comment 1", "# Comment 2")))
+})
+
+test_that("read_regexp reads lines that match the regular expression from a file.", {
+  test_data <- "data/test_logs"
+  
+  expect_that(read_regexp(test_data, "^[^#]"), equals("2013-09-23, 23:23, sadf, sdf, 234"))
+  expect_that(read_regexp(test_data, "^[#]"), equals(c("# Comment 1", "# Comment 2")))
 })
 
 test_that("read_regexp returns a character vector, of class 'character'.", {

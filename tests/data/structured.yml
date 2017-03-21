@@ -1,0 +1,29 @@
+settings:
+  inputfile: in.txt
+  outputfile: out.txt
+  filepattern: '*.txt'
+data:
+  column: description
+  structure:
+    - primary
+    - secondary
+    - tertiary
+    - quaternary
+  a:
+    regexp: '\\s{2}_a_\\s'
+    parts:
+      - aa:
+        regexp: 'aa'
+      - ab:
+        regexp: 'ab'
+      - ac:
+        regexp: 'ac'
+  b:
+    regexp: '\\s{2}_b_\\s'
+    parts:
+      - ba:
+        regexp: 'ba'
+      - bb:
+        regexp: 'bb'
+      - bc:
+        regexp: 'bc'
