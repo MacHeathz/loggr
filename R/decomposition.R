@@ -1,22 +1,20 @@
-library(yaml)
-library(stringr)
 
 datastructure <- function (str) {
-  yaml.load_file(str)
+  yaml::yaml.load_file(str)
 }
 
 extract_info <- function (str, regexps, values) {
   stopifnot(length(regexps) == length(values))
-  
+
   matrix <- sapply(seq_len(length(regexps)), function(i) {
     map_regexp_value(str, regexps[i], values[i])
   })
-  
+
   combine_values(matrix)
 }
 
 map_regexp_value <- function (str, regexp, value) {
-  ifelse(str_detect(str, regexp), value, NA)
+  ifelse(stringr::str_detect(str, regexp), value, NA)
 }
 
 combine_values <- function (matrix) {
@@ -24,7 +22,7 @@ combine_values <- function (matrix) {
     matrix <- as.matrix(matrix)
   }
 
-  combine_values_reduce(matrix)  
+  combine_values_reduce(matrix)
 }
 
 combine_values_reduce <- function (matrix) {
@@ -72,14 +70,17 @@ random.matrix <- function (arity) {
 
 random.longmatrix <- function (m,n) {
   R <- random.matrix(n)
-  R <- matrix(rep(R, as.integer((m/n)+1)), ncol=n, byrow=TRUE)
-  head(R, n=m)
+  R <- matrix(rep(R, as.integer((m / n) + 1)), ncol=n, byrow=TRUE)
+  utils::head(R, n=m)
 }
 
 benchmark_combine_values <- function (m, n) {
-  library(rbenchmark)
-  R <- random.longmatrix(m, n)
-  benchmark(combine_values_reduce(R),
-            combine_values_map(R),
-            combine_values_apply(R))
+  if (requireNamespace("rbenchmark", quietly = TRUE)) {
+    R <- random.longmatrix(m, n)
+    rbenchmark::benchmark(combine_values_reduce(R),
+                          combine_values_map(R),
+                          combine_values_apply(R))
+  } else {
+    stop("Package \"rbenchmark\" is needed for this function to work.")
+  }
 }
