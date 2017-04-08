@@ -1,6 +1,3 @@
-library(testthat)
-source("../r/decomposition.R")
-
 context("Logrify decomposition")
 
 test_that("datastructure reads a yaml file without blowing up.", {
@@ -20,12 +17,12 @@ test_that("extract_info maps a character vector onto values using the provided r
                            "Dt near C3",
                            "Rkr near B3",
                            "Wrf at P1"),
-                         
+
                          c("[Bb]\\d",
                            "[Ww]\\d",
                            "[Cc]\\d",
                            "[Pp]\\d"),
-                         
+
                          c("Bridge",
                            "Warp Engine",
                            "Computer System",
