@@ -9,7 +9,8 @@
 #'
 #' @param file Path to the file or string
 #' @param regexp The regular expression
-#' @param ... Remaining arguments will be passed to the readr::read_lines method
+#' @param ... Remaining arguments will be passed to the \code{readr::read_lines} method
+#' @inheritParams readr::read_lines
 #' @return Character vector of lines
 #' @examples
 #' read_regexp(c("# comment", "logline"), "^[#]")
