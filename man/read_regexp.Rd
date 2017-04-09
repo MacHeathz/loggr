@@ -2,13 +2,12 @@
 % Please edit documentation in R/read_regexp.R
 \name{read_regexp}
 \alias{read_regexp}
-\title{Read a file line by line, only return lines that match the provided regular
-expression.}
+\title{Read a file using regexp.}
 \usage{
 read_regexp(file, regexp, ...)
 }
 \arguments{
-\item{file}{Path to the file}
+\item{file}{Path to the file or string}
 
 \item{regexp}{The regular expression}
 
@@ -18,6 +17,14 @@ read_regexp(file, regexp, ...)
 Character vector of lines
 }
 \description{
-Read a file line by line, only return lines that match the provided regular
+Read a file or string line by line, only return lines that match the provided regular
 expression.
+}
+\details{
+Paragraph shown after arguments with more details
+
+Another paragraph laying down the details
+}
+\examples{
+logrify::read_regexp(c("# comment", "logline"), "^[#]")
 }

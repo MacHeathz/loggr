@@ -1,7 +1,7 @@
 Package: logrify
 Type: Package
 Title: Log processing functions for R
-Version: 0.1.0
+Version: 0.0.0.0010
 Authors@R: person("Florian", "Ockhuysen", email = "ockhuysen@yahoo.com", role = c("aut", "cre"))
 Description: Processing log files using Regular Expressions to extract information.
     The decomposition and several regular expressions can be defined using a yaml config file.
